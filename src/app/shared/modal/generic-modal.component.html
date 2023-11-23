@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{(title || '') | translate}}</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="dismiss()">&times;</button>
+</div>
+
+<div class="modal-body">
+  <p [innerHTML]="(question || '')| translate"></p>
+</div>
+
+<div class="modal-footer" >
+  <button (click)="onCancelClicked()" class="btn-danger btn"><fa-icon icon="cancel"></fa-icon>&nbsp; Cancelar </button>
+  <button (click)="onConfirmClicked()" class="btn-primary btn"><fa-icon icon="pen"></fa-icon>&nbsp; Sim </button>
+
+</div>

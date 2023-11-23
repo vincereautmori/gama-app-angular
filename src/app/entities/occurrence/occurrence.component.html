@@ -1,0 +1,96 @@
+<div class="component-header">
+  <h2>Ocorrências</h2>
+</div>
+
+<div class="container">
+
+  <form (submit)="search()" [formGroup]="dateForm" class="row row-cols-sm-auto mb-4">
+    <div class="col-6">
+      <div class="form-group col-12">
+        <label>De</label>
+        <div class="input-group">
+
+          <input
+            class="form-control"
+            placeholder="01-01-2023"
+            formControlName="from"
+
+            name="dp"
+            ngbDatepicker
+            #d="ngbDatepicker"
+          />
+          <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button">
+            <fa-icon icon="calendar"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group col-12">
+          <label>Até</label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="31-12-2023"
+              formControlName="to"
+              name="dp2"
+              ngbDatepicker
+              #d2="ngbDatepicker"
+            />
+            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()" type="button">
+              <fa-icon icon="calendar"></fa-icon>
+            </button>
+          </div>
+      </div>
+    </div>
+      <button class="btn btn-primary search-btn" type="submit"><fa-icon icon="search"></fa-icon>&nbsp; Pesquisar</button>
+  </form>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Urgência</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let occurrence of occurrences; index as i">
+      <th scope="row">{{ occurrence.id }}</th>
+      <td>
+        {{occurrence.name}}
+      </td>
+      <td>{{occurrence.occurrenceType}}</td>
+      <td>{{occurrence.occurrenceUrgencyLevel}}</td>
+      <td>{{occurrence.status}}</td>
+      <td>
+        <button (click)="goToView(occurrence)" type="button" class="btn btn-primary">
+          <fa-icon icon="eye"></fa-icon>
+        </button>
+      </td>
+    </tr>
+
+    </tbody>
+
+  </table>
+  <p *ngIf="!occurrences?.length">
+    <ngb-alert [dismissible]="false">
+      <strong>Não há dados cadastrados</strong>
+    </ngb-alert>
+  </p>
+
+
+  <div *ngIf="totalItems > 0" class="card-header" [ngClass]="{'with-pagination': occurrences}">
+    <div class="d-flex justify-content-between">
+      <span *ngIf="!occurrences.length" jhiTranslate="global.empty.list.title"></span>
+      <div>
+        Mostrando {{occurrences.length }} de {{totalItems}}
+      </div>
+      <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="pageSize" [maxSize]="5"
+                      [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)" size="sm"></ngb-pagination>
+    </div>
+  </div>
+
+</div>

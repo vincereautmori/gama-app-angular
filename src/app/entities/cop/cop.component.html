@@ -1,0 +1,60 @@
+<div class="component-header">
+  <h2>Policiais</h2>
+</div>
+
+<div class="container">
+
+  <div class="btn-header mb-4">
+    <button (click)="new()" class="btn-primary btn"><fa-icon icon="plus"></fa-icon>&nbsp; Adicionar </button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ativo</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Sobrenome</th>
+      <th scope="col">Açoes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cop of cops; index as i">
+      <th scope="row">{{ cop.id }}</th>
+      <td>
+        <fa-icon class="danger" *ngIf="!cop.active" icon="close"></fa-icon>
+        <fa-icon class="success" *ngIf="cop.active" icon="check"></fa-icon>
+      </td>
+      <td>
+        {{cop.firstName}}
+      </td>
+      <td>{{cop.lastName}}</td>
+      <td>
+        <button (click)="goToView(cop)" type="button" class="btn btn-primary"><fa-icon icon="eye"></fa-icon></button>
+        <button (click)="goToEdit(cop)" type="button" class="btn btn-success"><fa-icon icon="edit"></fa-icon></button>
+        <button (click)="confirmDelete(cop)" type="button" class="btn btn-danger"><fa-icon icon="trash-alt"></fa-icon></button>
+      </td>
+    </tr>
+
+    </tbody>
+
+  </table>
+  <p *ngIf="!cops?.length">
+    <ngb-alert [dismissible]="false">
+      <strong>Não há dados cadastrados</strong>
+    </ngb-alert>
+  </p>
+
+
+
+  <div *ngIf="totalItems > 0" class="card-header" [ngClass]="{'with-pagination': cops}">
+    <div class="d-flex justify-content-between">
+      <span *ngIf="!cops.length" jhiTranslate="global.empty.list.title"></span>
+      <div>
+        Mostrando {{cops.length }} de {{totalItems}}
+      </div>
+      <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="pageSize" [maxSize]="5"
+                      [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)" size="sm"></ngb-pagination>
+    </div>
+  </div>
+
+</div>

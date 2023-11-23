@@ -1,0 +1,40 @@
+<div class="component-header">
+  <h2>Detalhes da infração</h2>
+</div>
+
+<div class="container">
+  <div class="btn-header mb-4">
+    <button (click)="cancel()" class="btn-primary btn"><fa-icon icon="angle-left"></fa-icon>&nbsp; Voltar</button>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12" *ngIf="violation">
+
+      <div class="card-body">
+        <div class="row justify-content-center">
+
+          <ngb-accordion class="col-12 entity-details" activeIds="panelEntity">
+            <ngb-panel id="panelEntity">
+              <ng-template ngbPanelTitle>
+                <fa-icon [fixedWidth]="true" icon="list-alt"></fa-icon>
+                &nbsp;
+                <span>Detalhes</span>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <div class="row justify-content-center">
+                  <dl class="col-12">
+                    <dt><span>Id</span></dt>
+                    <dd>{{ violation.id }}</dd>
+                    <dt><span>Código</span></dt>
+                    <dd>{{ violation.code }}</dd>
+                    <dt><span>Nome</span></dt>
+                    <dd>{{ violation.name }}</dd>
+                  </dl>
+                </div>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

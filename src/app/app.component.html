@@ -1,0 +1,6 @@
+<section class="d-flex">
+  <router-outlet *ngIf="isAuthenticated()" name="sidebar"></router-outlet>
+  <div [ngClass]="isAuthenticated() ? 'active' : ''" class="component-container">
+    <router-outlet></router-outlet>
+  </div>
+</section>

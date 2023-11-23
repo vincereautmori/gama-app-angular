@@ -1,0 +1,62 @@
+<aside class="menu-sidebar">
+  <div class="logo">
+    <img class="logo" src="assets/logo/logo.png">
+    <h2>Gama Admin</h2>
+  </div>
+
+  <div class="menu-sidebar-items mt-5">
+    <nav class="navbar-sidebar">
+      <ul class="">
+        <li>
+          <a class="highlighted-menu" routerLinkActive="active" routerLink="occurrences">
+            <fa-icon icon="warning"></fa-icon>
+            <span>Ocorrências</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="highlighted-menu" routerLinkActive="active" routerLink="admins">
+            <fa-icon icon="person-military-rifle"></fa-icon>
+            <span>Administradores</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="highlighted-menu" routerLinkActive="active" routerLink="cops">
+            <fa-icon icon="person-military-rifle"></fa-icon>
+            <span>Policiais</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="highlighted-menu" routerLinkActive="active" routerLink="users">
+            <fa-icon icon="user"></fa-icon>
+            <span>Cidadãos</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="highlighted-menu" routerLinkActive="active" routerLink="fines">
+            <fa-icon icon="file-invoice-dollar"></fa-icon>
+            <span>Multas</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="highlighted-menu" routerLinkActive="active" routerLink="violations">
+            <fa-icon icon="file-invoice-dollar"></fa-icon>
+            <span>Infrações</span>
+          </a>
+        </li>
+
+
+
+
+        <div class="user-card">
+          <h5>Olá, Usuário</h5>
+          <a (click)="logout()"><span>Sair</span>&nbsp;<fa-icon icon="right-from-bracket"></fa-icon></a>
+        </div>
+      </ul>
+    </nav>
+  </div>
+</aside>
