@@ -57,6 +57,16 @@ export class FineService {
     return this.http.put<Fine>(`${this.baseUrl}/${this.basePrefix}/${id}`, obj);
   }
 
+  compute(id: number): Observable<HttpResponse<Fine>> {
+    return this.http.post<Fine>(`${this.baseUrl}/${this.basePrefix}/${id}/compute`, null)
+      // @ts-ignore
+      .pipe(tap((res: HttpResponse<Fine>) => {
+        if (res.status === 200) {
+          this.toastr.show("Cadastro efetuado com sucesso", "200")
+        }
+      }));
+  }
+
   // Método para excluir um objeto por ID
   delete(id: number): Observable<Fine> {
     return this.http.delete<Fine>(`${this.baseUrl}/${this.basePrefix}/${id}`);

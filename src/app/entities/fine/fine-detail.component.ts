@@ -6,6 +6,7 @@ import {Fine} from "../model/fine.model";
 import * as mapboxgl from "mapbox-gl";
 import {FileService} from "../../service/file.service";
 import {DomSanitizer} from "@angular/platform-browser";
+import {GenericModalService} from "../../shared/modal/generic-modal.service";
 
 
 @Component({
@@ -19,7 +20,7 @@ export class FineDetailComponent {
   map: mapboxgl.Map | undefined;
   style = 'mapbox://styles/mapbox/streets-v11';
 
-  constructor(private fb: FormBuilder, private fineService: FineService,
+  constructor(private fb: FormBuilder, private fineService: FineService, private genericModalService: GenericModalService,
               private fileService: FileService, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
     this.fine = this.route.snapshot.data['fine'];
 
@@ -46,6 +47,15 @@ export class FineDetailComponent {
     const marker1 = new mapboxgl.Marker()
       .setLngLat([this.fine.longitude!, this.fine.latitude!])
       .addTo(this.map);
+  }
+
+  compute() {
+
+    this.genericModalService.show("Computar multa", "Tem certeza que deseja compultar a multa?", () => {
+      this.fineService.compute(this.fine?.id!).subscribe(() => {
+
+      })
+    })
   }
 
   sanitize( url:string ) {

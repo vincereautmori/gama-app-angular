@@ -8,6 +8,7 @@ export class Occurrence {
     public description?: string,
     public status?: string,
     public occurrenceType?: string,
+    public imageUrl?: string,
     public occurrenceUrgencyLevel ?: string,
     public active  ?: boolean
   ) {
